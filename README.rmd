@@ -1,0 +1,34 @@
+---
+title: "WIFLProject"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  github_document:
+    toc: true
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "readme-figs/"
+)
+```
+
+My goal for this project is to learn the functions of R and use it to manipulate and analyze the WIFL dataset. 
+
+```{r}
+library(readr)
+WIFL_Metadata <- read_csv("~/Desktop/WIFLProject/WIFL_Metadata.csv")
+panel1 <- read_delim("~/Desktop/WIFLProject/panel1.csv", 
+    "\t", escape_double = FALSE, trim_ws = TRUE)
+library(tidyverse)
+WIFLPanel1 <- WIFL_Metadata %>% left_join(panel1, by = "Field_Number")
+library(readr)
+panel2 <- read_delim("~/Desktop/WIFLProject/panel2.csv", 
+    "\t", escape_double = FALSE, trim_ws = TRUE)
+WIFLPanel1_2 <- WIFLPanel1 %>% left_join(panel2, by = "Field_Number")
+```
+
+
